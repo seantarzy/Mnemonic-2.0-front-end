@@ -40,10 +40,17 @@ export default class PlaylistsContainer extends React.Component {
     }
 
     setFeatured = (e, playlist)=>{
-        e.preventDefault()
+        // e.preventDefault()
         console.log("playlist: ", playlist)
         this.setState({ featuredPlaylist: playlist, featuredBookmarks: playlist.bookmarks})
     }
+
+    setFeaturedToNull = (e)=>{
+        e.preventDefault()
+        this.setState({ featuredPlaylist: null})
+
+    }
+
 
         toggleModal = ()=>{
             this.setState({showModal: !this.state.showModal})
@@ -59,13 +66,16 @@ export default class PlaylistsContainer extends React.Component {
 
         render(){
             let bookmarkCards = null
-        const playlists = this.props.globalState.user.playlists.map((playlist)=>{
-            return (
-                <div onClick = {(e)=>this.setFeatured(e, playlist)}>
-                    <PlaylistCard playlist = {playlist} key={playlist.id}/>
-                </div>
-            )
-        })
+            let playlists
+            if(this.props.globalState.user.playlists){
+                 playlists = this.props.globalState.user.playlists.map((playlist)=>{
+                    return (
+                        <div onClick = {(e)=>this.setFeatured(e, playlist)}>
+                            <PlaylistCard playlist = {playlist} key={playlist.id}/>
+                        </div>
+                    )
+                })
+            }
 
         const customStyles = {
             content : {
@@ -81,7 +91,7 @@ export default class PlaylistsContainer extends React.Component {
         return (
 
             <div className = "white-text">
-                <div className = "in-line-playlist" onClick = {this.toggleModal} class = "in-line-playlist">
+                <div className = "in-line-playlist" onClick = {this.toggleModal}>
                     <img src = {NewPlaylist} height = '100' width = '100'/>
                     <p>new playlist...</p>
                 </div>
@@ -98,28 +108,29 @@ export default class PlaylistsContainer extends React.Component {
                     <button onClick = {this.toggleModal}>close</button>
                 </Modal>
                     {this.state.featuredPlaylist ? 
-                    <div className = "featued-container">
-                    <h1>{this.state.featuredPlaylist.title}</h1>
-                    {this.state.showMore ? 
-                        <div>
-                        {this.state.editPlaylistForm ? 
+                        <div className = "featued-container">
+                        <h1>{this.state.featuredPlaylist.title}</h1>
+                        {this.state.showMore ? 
+                            <div>
+                            {this.state.editPlaylistForm ? 
+                                <>
+                                <EditPlaylist
+                                setFeaturedToNull = {this.setFeaturedToNull}
+                                toggleEditPlaylistForm = {this.toggleEditPlaylistForm} 
+                                playlist = {this.state.featuredPlaylist}
+                                mountUser = {this.props.mountUser}
+                                />
+                            </>
+                            :
                             <>
-                            <EditPlaylist
-                             toggleEditPlaylistForm = {this.toggleEditPlaylistForm} 
-                            playlist = {this.state.featuredPlaylist}
-                            mountUser = {this.props.mountUser}
-                            />
-                        </>
-                        :
-                        <>
-                        <button onClick = {this.toggleEditPlaylistForm}>Edit Playlist</button>
-                         <p>title: {this.state.featuredPlaylist.title}</p>
-                        <p>description: {this.state.featuredPlaylist.description}</p>
-                        <p>bookmarks: {this.state.featuredPlaylist.bookmarks.length}</p>
-                        <button onClick = {this.playlistShowMore}>hide</button>
-                        </>}
-                        
-                        </div>
+                            <button onClick = {this.toggleEditPlaylistForm}>Edit Playlist</button>
+                                <p>title: {this.state.featuredPlaylist.title}</p>
+                                <p>description: {this.state.featuredPlaylist.description}</p>
+                                <p>bookmarks: {this.state.featuredPlaylist.bookmarks.length}</p>
+                            <button onClick = {this.playlistShowMore}>hide</button>
+                            </>}
+                            
+                            </div>
                     :
                         <button onClick = {this.playlistShowMore}>more...</button>
                     }
@@ -129,6 +140,9 @@ export default class PlaylistsContainer extends React.Component {
               this.state.featuredBookmarks.map((bookmark) => {
                     return <BookmarkCard bookmark = {bookmark}
                             handleBookmarkDelete = {this.handleBookmarkDelete}
+                            mountUser = {this.props.mountUser}
+                            setFeatured = {this.setFeatured}
+                            playlist = {this.state.featuredPlaylist}
                         
                     />
             })

@@ -28,6 +28,7 @@ class App extends React.Component {
     }
     getAllArtists()
     .then(r => 
+      
       this.setState({artists: r})
     )
   }

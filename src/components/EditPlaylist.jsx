@@ -29,13 +29,17 @@ export default class CreatePlaylistForm extends React.Component{
          
      }
 
-     handleDelte = ()=>{
+     handleDelte = (e)=>{
+         
        deletePlaylist(this.props.playlist.id)
        .then((playlist)=>{
          console.log('deleted playlist ', playlist)
-        })
-        .then(()=> {
-          this.props.mountUser()
+         if(localStorage.token){
+           stayLoggedIn()
+           .then((r)=> this.props.mountUser(r))
+              this.props.setFeaturedToNull(e)
+            // this.props.toggleEditPlaylistForm()
+         }
         })
      }
 
@@ -44,7 +48,6 @@ export default class CreatePlaylistForm extends React.Component{
             <>
             <form onSubmit = {(e)=>this.handleSubmit(e)} id = "edit-playlist">
         <h1>Edit "{this.props.playlist.title}"</h1>
-                <button onClick = {this.handleDelte}>🗑</button>
               <label >title:</label>
               <input type="text" autoComplete="off" name="title" value={this.state.title} onChange={this.handleChange}/>
               <br/>
@@ -55,6 +58,9 @@ export default class CreatePlaylistForm extends React.Component{
               <button onClick = {this.props.toggleEditPlaylistForm}>Cancel</button>
               Go to search to add new bookmarks to this playlist!
             </form>
+            <div>
+            <button onClick = {(e)=>this.handleDelte(e)}>🗑</button>
+            </div>
             </>
         )
     }

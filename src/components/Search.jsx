@@ -11,10 +11,12 @@ export default class Search extends React.Component {
     currentSong: null,
     matchingPhrase: "",
     currentSongIndex: 0,
+    current_snippet_index: 0,
     order_matters: true,
     error: null,
     saved: false,
     resultDisplayed: false,
+    satisfied_artist_request: true
   };
 
   goToNextResult = (e, query, current_song_index = 0, artist, order_matters) => {
@@ -22,9 +24,9 @@ export default class Search extends React.Component {
     this.handleSubmit(e, query, current_song_index, artist, order_matters);
   };
   
-  handleSubmit = (e, query, current_song_index = 0, artist, order_matters) => {
+  handleSubmit = (e, query, current_snippet_index = 0, artist, order_matters) => {
     this.setState({ query: query, currentArtist: artist });
-    fetchMnemonic(query, current_song_index, artist, order_matters).then((r) => {
+    fetchMnemonic(query, current_snippet_index, artist, order_matters).then((r) => {
       console.log(r)
       if (r.error) {
         this.setState({ error: r.error });
@@ -33,8 +35,10 @@ export default class Search extends React.Component {
       } else {
         this.setState({
           error: null,
-          currentSongIndex: r.current_song_index,
+          current_snippet_index: r.current_snippet_index,
           resultDisplayed: true,
+          original_query: r.original_query,
+          satisfied_artist_request: r.satisfied_artist_request
         });
         this.props.handleSearch(r)
       }
@@ -46,6 +50,7 @@ export default class Search extends React.Component {
     this.setState({ saved: !this.state.saved });
   };
 
+  
   render() {
     return (
       <div className="home">
@@ -56,10 +61,12 @@ export default class Search extends React.Component {
         {this.state.error ? < NoResults/> : null}
         </div>
         <div id="full-body-div">
+       <text className = "white-text">{this.state.satisfied_artist_request ? null : "We Couldn't find results with that artist, but here's something..."}</text>
           {
             this.props.globalState.search.song && this.props.globalState.search.song.title ?  
             <Result handleSubmit={this.handleSubmit} globalState={this.props.globalState}
             mountUser = {this.props.mountUser}
+            original_query = {this.state.original_query}
             />
             :
             null

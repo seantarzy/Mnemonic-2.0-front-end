@@ -123,7 +123,7 @@ export default class Result extends React.Component {
           <button
             id="next-page-button"
             className="query-summary"
-            onClick = {(e)=>this.props.handleSubmit(e, this.props.globalState.search.input_phrase, this.props.globalState.search.current_song_index, this.props.globalState.search.song.artist_id, this.props.globalState.search.order_matters)}
+            onClick = {(e)=>this.props.handleSubmit(e, this.props.original_query, this.props.globalState.search.current_snippet_index, this.props.globalState.search.song.artist_id, this.props.globalState.search.order_matters)}
             >
             Next Result ⮕{" "}
           </button>

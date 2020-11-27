@@ -1,11 +1,18 @@
 import React, {button} from 'react';
 import Card from 'react-bootstrap/Card'
-import {getSong, deleteBookmark} from '../services/utils'
+
+import Modal from 'react-modal';
+
+import {getSong, deleteBookmark, getBookmark} from '../services/utils'
+import EditNotes from './EditNotes';
 
 export default class BookmarkCard extends React.Component {
 
     state = {
-        showInputPhrase: false
+        showInputPhrase: false,
+        showNotes: false, 
+        editNotes: false,
+        currentNote: this.props.bookmark.note
     }
 
 
@@ -26,6 +33,10 @@ export default class BookmarkCard extends React.Component {
         }
     }
 
+       refreshPage=()=>{
+    window.location.reload(false);
+  }
+
     handleDelete = (id)=>{
         deleteBookmark(id)
         .then(()=>{
@@ -33,11 +44,52 @@ export default class BookmarkCard extends React.Component {
         })
     }
 
+    showNotes = (e)=>{
+        e.preventDefault()
+        this.setState({showNotes: true})
+    }
+
+    hideNotes = ()=>{
+        // e.preventDefault()
+        this.setState({showNotes: false})
+
+    }
+
+    setNewNote = (newNote)=>{
+        this.setState({currentNote: newNote});
+    }
+
+    // getBookmark = ()=>{
+    //     getBookmark(this.props.bookmark.id)
+    //     .then((bookmark)=>{
+    //         document.getElementById(this.props.bookmark.id).innerText = bookmark.note
+    //     })
+    // }
+
+    toggleEditNotes=()=>{
+        console.log("hit")
+        this.setState({editNotes: !this.state.editNotes})
+    }
+
     render(){
+        const customStyles = {
+      content : {
+        top                   : '50%',
+        left                  : '50%',
+        right                 : 'auto',
+        bottom                : 'auto',
+        marginRight           : '-50%',
+        transform             : 'translate(-50%, -50%)',
+      'overflow-y'           :'auto',
+      'max-height'           :'100vh'   
+      }
+    };
         return(
             <div id="bookmark" style = {this.styles.whole_card}>
               
                 <Card >
+                    {!this.state.showNotes  ?
+                    <div>
             <iframe
             title="youtube-vid"
             width="200"
@@ -54,9 +106,51 @@ export default class BookmarkCard extends React.Component {
                 :
                 null}
                 </Card.Body>
+                <button onClick = {(e)=>this.showNotes(e)}>
+                    {this.props.bookmark.note ? <text> notes</text> : <text> notes</text>}
+                </button>
                 <button onClick = {()=> this.handleDelete(this.props.bookmark.id)}>
                     🗑
                 </button>
+                </div>
+                :
+                <div height = "200" width = "200">
+                        <Card.Body style = {this.styles.card_body}>
+                            <Card.Text>Notes: </Card.Text>
+                            <div > 
+
+                            </div>
+                        <Card.Text id = {this.props.bookmark.id}>{this.props.bookmark.note ? <text>{this.props.bookmark.note}</text> : "Add Notes!"} </Card.Text>
+                            <br>
+                            </br>
+                            <Card.Text></Card.Text>
+                            <button onClick = {this.toggleEditNotes}>
+                                edit notes
+                            </button>
+                            <button onClick = {this.hideNotes}>
+                                ↩ mnemonic info
+                            </button>
+                        </Card.Body>
+                </div>
+                }
+                    <Modal 
+                     isOpen={this.state.editNotes}
+                    style = {customStyles}
+                    onRequestClose={this.toggleEditNotes}
+                    >
+                        <EditNotes 
+                            note = {this.props.bookmark.note}
+                            getBookmark = {this.getBookmark}
+                            bookmark_id = {this.props.bookmark.id} 
+                            mountUser = {this.props.mountUser} 
+                            toggleEditNotes = {this.toggleEditNotes} 
+                            setFeatured = {this.props.setFeatured}
+                            playlist = {this.props.playlist}
+                            refreshPage = {this.refreshPage}
+                            hideNotes = {this.hideNotes}
+                            setNewNote = {this.setNewNote}
+                            />
+                    </Modal>
                 </Card>
     
             </div>

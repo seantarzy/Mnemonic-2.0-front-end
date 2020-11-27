@@ -1,11 +1,11 @@
 
 const BACKEND = "http://127.0.0.1:3001/";
 
-export const fetchMnemonic = (phrase, current_song_index, artist, order) => {
+export const fetchMnemonic = (phrase, current_snippet_index, artist, order) => {
   if(!artist){
     artist = 'any'
   }
-  return fetch(BACKEND + `query/${phrase}/${current_song_index}/artist/${artist}/order/${order}`)
+  return fetch(BACKEND + `query/${phrase}/${current_snippet_index}/artist/${artist}/order/${order}`)
   .then(r => {
     console.log(`fetchMnemonic fetch returned with status ${r.status}`)
     return r.json()
@@ -50,6 +50,13 @@ export const stayLoggedIn = () => {
     console.log(`stayLoggedIn fetch returned with status ${r.status}`)
     return r.json()
   })
+}
+
+export const getBookmark = (bookmark_id)=>{
+  return fetch(BACKEND + `bookmarks/${bookmark_id}`, {
+  }).then((r) => {
+   return r.json();
+  });
 }
 
 export const saveBookmark = (playlist_id, song_id, input_phrase, matching_phrase, youtube_id)=>{
@@ -125,6 +132,23 @@ export const editPlaylist = (playlist_params, playlist_id) =>{
   });
 }
 
+export const editBookmark = (note, bookmark_id)=>{
+  return fetch(BACKEND + `bookmarks/${bookmark_id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: localStorage.token,
+      "content-type": "application/json"
+    }, 
+    body: JSON.stringify({
+      bookmark_id: bookmark_id,
+      note: note
+    })
+  })
+    .then((r)=>{
+      console.log(`updated bookmark with a status of ${r.status}`)
+    })
+
+}
 export const deleteBookmark = (bookmark_id)=>{
   return fetch(BACKEND + `bookmarks/${bookmark_id}`, {
     method: "DELETE",

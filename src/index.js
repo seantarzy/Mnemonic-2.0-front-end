@@ -19,6 +19,7 @@ let initialState = {
     input_phrase: null,
     matching_phrase: null,
     current_song_index: null,
+    current_snippet_index: null,
     order_matters: true,
     song: {
       full_title: null, 
