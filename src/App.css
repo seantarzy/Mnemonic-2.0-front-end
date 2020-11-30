@@ -257,3 +257,8 @@ width: 13px;
 #order-matters-text{
   margin: 5px;
 }
+
+.filter-select{
+  width: 200px;
+  color: black;
+}

@@ -15,7 +15,8 @@ import {connect} from 'react-redux'
 class App extends React.Component {
 
   state = {
-    artists: null
+    artists: null, 
+    artistOptions: null
   }
   componentDidMount = () => {
     if(localStorage.token){
@@ -28,8 +29,10 @@ class App extends React.Component {
     }
     getAllArtists()
     .then(r => 
-      
-      this.setState({artists: r})
+      this.setState({artistOptions: r.map((artist)=>{
+     return { label: artist.name, value: artist.id}})
+    })
+      // this.setState({artists: r})
     )
   }
 
@@ -42,7 +45,7 @@ class App extends React.Component {
   }
 
   renderSearch = () => {
-    return <Search artists={this.state.artists} handleSearch={(r) => this.props.mountSearch(r)} globalState={this.props.globalState} mountUser = {this.props.mountUser}/>
+    return <Search artistOptions={this.state.artistOptions} handleSearch={(r) => this.props.mountSearch(r)} globalState={this.props.globalState} mountUser = {this.props.mountUser}/>
   }
 
   renderRegister = () => {

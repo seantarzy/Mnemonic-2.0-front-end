@@ -1,5 +1,7 @@
 import React from "react";
 
+import Select from 'react-select'
+import 'react-select/dist/react-select.cjs'
 import './SearchBar.css'
 export default class Home extends React.Component {
   //circular buttons
@@ -11,17 +13,34 @@ export default class Home extends React.Component {
     query: "",
     artist: "",
     order: true,
+    artistOptions: null
   };
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
+  handleSelect = (e)=>{
+this.setState({artist: e.value})
+  }
   handleCheckToggle = ()=>{
     this.setState({order: !this.state.order})
   }
 
+  componentDidMount = ()=>{
+    console.log("artist options: ", this.props.artistOptions)
+if(this.props.artists){
+    const artistOptions = this.props.artists.map((artist)=>{
+     return { label: artist.name, value: artist.id}
+    })
+    // debugger
+    this.setState({artistOptions})
+  }
+  }
+
   render() {
     return (
+      
       <form
         onSubmit={(e) =>
           this.props.handleSubmit(
@@ -49,17 +68,18 @@ export default class Home extends React.Component {
         <label>
           By Specific Artist:
         </label>
-          <select name="artist" id="artist" onChange={this.handleChange}>
-            <option value="any">Any</option>
+          {/* <select name="artist" id="artist" onChange={this.handleChange}> */}
             {
-            this.props.artists ? 
-            this.props.artists.map(artist => {
-              return <option value={artist.id}>{artist.name}</option>
-            })
+              this.props.artistOptions ?
+              <Select
+              className = "filter-select"
+              options = {this.props.artistOptions}
+              onChange = {this.handleSelect}
+              /> 
             :
-            null
+                null
             }
-          </select>
+          {/* </select> */}
           <br>
           </br>
           <div id="round-order-matters-checkbox">
