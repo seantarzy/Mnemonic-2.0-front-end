@@ -5,7 +5,36 @@ export default class About extends React.Component {
         return(
             <div className='about'>
                 <h2>About this Application</h2>
-                <p>We set out on a mission to make learning easier and more fun. Whether you're studying for an exam or grocery shopping, there's a lot of information to remember. What's a better way to embed this into your brain than with music! It's <a href="https://scholarscompass.vcu.edu/cgi/viewcontent.cgi?referer=https://scholar.google.com/&httpsredir=1&article=1059&context=vcoa_case" className="white-text" target="_blank">scientifically proven</a> that song lyrics can help people remember specific things. An acrostic mnemonic device is used to associate two sets of words by their initials. For example, to remember all the planets (Mars, Venus, Earth, etc...) we can use the text "My Very Excellent Mother Just Served Us Noodles".</p>
+                <p>We set out on a mission to make learning easier and more fun. Whether you're studying for an exam or grocery shopping, there's a lot of information to remember. What's a better way to embed this into your brain than with music! It's <a href="https://scholarscompass.vcu.edu/cgi/viewcontent.cgi?referer=https://scholar.google.com/&httpsredir=1&article=1059&context=vcoa_case" className="white-text" target="_blank">scientifically proven</a> that song lyrics can help people remember specific things. An acrostic mnemonic device is used to associate two sets of words by their initials. For example, to remember all the planets (Mars, Venus, Earth, etc...) we can use the text: 
+                <br>
+                </br>
+                <br>
+                </br>
+                <li>
+                My: Mercury
+                </li>
+                <li>
+                Very: Venus
+                </li>
+                <li>
+                 Excellent: Earth
+                </li>
+                <li>
+                  Mother: Mars
+                 </li>
+                <li>
+                  Just: Jupiter
+                </li>
+                 <li>
+                  Served: Saturn
+                </li>
+                 <li>
+                  Us: Uranus
+                 </li>
+                 <li>
+                  Noodles: Neptune
+                </li>
+                  </p>
 
                 <h2>How to Use</h2>
                 <p>Input a word, phrase, or piece of text you'd like to remember and we'll take care of the rest. We'll match the intials of your text to that of an artist's lyrics of your choosing. 

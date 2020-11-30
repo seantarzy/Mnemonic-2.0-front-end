@@ -27,7 +27,7 @@ export default class BookmarkCard extends React.Component {
         display: 'inline-block',
         },
         card_body: {
-            justifyContents: 'left',
+            justifyContent: 'left',
             display: 'inline-block',
 
         }
@@ -71,6 +71,16 @@ export default class BookmarkCard extends React.Component {
         this.setState({editNotes: !this.state.editNotes})
     }
 
+    noteChanged = ()=>{
+            this.setState({noteChanged: true})
+     
+        this.setState({noteChanged: false})
+    }
+    componentDidUpdate = ()=>{
+        if(this.state.noteChanged){
+        this.setState({currentNote: this.props.bookmark.note})
+        }
+    }
     render(){
         const customStyles = {
       content : {
@@ -120,7 +130,7 @@ export default class BookmarkCard extends React.Component {
                             <div > 
 
                             </div>
-                        <Card.Text id = {this.props.bookmark.id}>{this.props.bookmark.note ? <text>{this.props.bookmark.note}</text> : "Add Notes!"} </Card.Text>
+                        <Card.Text id = {this.props.bookmark.id}>{this.props.bookmark.note ? <text>{this.state.currentNote}</text> : "Add Notes!"} </Card.Text>
                             <br>
                             </br>
                             <Card.Text></Card.Text>
@@ -139,6 +149,7 @@ export default class BookmarkCard extends React.Component {
                     onRequestClose={this.toggleEditNotes}
                     >
                         <EditNotes 
+                        noteChanged = {this.noteChanged}
                             note = {this.props.bookmark.note}
                             getBookmark = {this.getBookmark}
                             bookmark_id = {this.props.bookmark.id} 

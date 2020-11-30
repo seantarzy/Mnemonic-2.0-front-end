@@ -20,7 +20,7 @@ export default class EditNodes extends React.Component {
         .then(()=>{
             this.props.toggleEditNotes()
             window.location.reload(false);
-            this.props.getBookmark()// this.props.setNewNote(this.state.currentNote)
+        // this.props.setNewNote(this.state.currentNote)
         })
         .then(()=>{           
         });

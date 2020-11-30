@@ -1,6 +1,12 @@
 import React from "react";
+
 import './SearchBar.css'
 export default class Home extends React.Component {
+  //circular buttons
+  //spice up background
+  //different fonts
+  // picker-on change filter the select menu
+  // put a checkmark 
   state = {
     query: "",
     artist: "",
@@ -29,7 +35,9 @@ export default class Home extends React.Component {
         style={this.styles}
       >
         <label>
-          Phrase to remember...:
+          Phrase to remember:
+          <br>
+          </br>
           <input
             type="text"
             name="query"
@@ -52,15 +60,25 @@ export default class Home extends React.Component {
             null
             }
           </select>
-        Order Matters:
+          <br>
+          </br>
+          <div id="round-order-matters-checkbox">
+            <div className = "round"  >
         <input
+          id = "checkbox"
           name="isGoing"
           type="checkbox"
           checked={this.state.order}
-          onChange={this.handleCheckToggle}
-        />
+          onChange={this.handleCheckToggle}/>
+          <label for="checkbox"></label>
+          </div>
+          <text className = "order-matters" id = "order-matters-text">Order Matters</text>
         <br />
+        </div>
+        <br>
+        </br>
         <input type="submit" value="Submit" />
+
       </form>
     );
   }
