@@ -73,7 +73,7 @@ let storeObj = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && windo
 ReactDOM.render(
   <Provider store={storeObj}>
     <BrowserRouter>
-      <App />
+      <App className = "whole-app"/>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')

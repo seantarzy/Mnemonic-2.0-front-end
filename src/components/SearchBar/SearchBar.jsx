@@ -40,7 +40,7 @@ if(this.props.artists){
 
   render() {
     return (
-      
+      <div className = "search-page"> 
       <form
         onSubmit={(e) =>
           this.props.handleSubmit(
@@ -53,8 +53,9 @@ if(this.props.artists){
         }
         style={this.styles}
       >
+          <div id = "phrase-to-remember">
         <label>
-          Phrase to remember:
+          Phrase to Remember:
           <br>
           </br>
           <input
@@ -64,7 +65,9 @@ if(this.props.artists){
             onChange={this.handleChange}
           />
         </label>
+        </div>
         <br />
+        <div id="by-artist">
         <label>
           By Specific Artist:
         </label>
@@ -79,6 +82,7 @@ if(this.props.artists){
             :
                 null
             }
+            </div>
           {/* </select> */}
           <br>
           </br>
@@ -97,9 +101,9 @@ if(this.props.artists){
         </div>
         <br>
         </br>
-        <input type="submit" value="Submit" />
-
+        <input type="submit" value = "make my mnemonic!" />
       </form>
+      </div>
     );
   }
 }

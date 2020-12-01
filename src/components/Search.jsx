@@ -3,7 +3,7 @@ import { fetchMnemonic } from '../services/utils'
 import SearchBar from './SearchBar/SearchBar'
 import Result from "./Result";
 import NoResults from './NoResults'
-
+import Logo from '../assets/mnemonic-2.0-logo.png'
 export default class Search extends React.Component {
   state = {
     query: "",
@@ -61,6 +61,8 @@ export default class Search extends React.Component {
         {this.state.error ? < NoResults/> : null}
         </div>
         <div id="full-body-div">
+          {/* <img src = {Logo} id ="logo"/> */}
+
        <text className = "white-text">{this.state.satisfied_artist_request ? null : "We Couldn't find results with that artist, but here's something..."}</text>
           {
             this.props.globalState.search.song && this.props.globalState.search.song.title ?  

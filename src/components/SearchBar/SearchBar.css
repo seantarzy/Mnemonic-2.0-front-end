@@ -1,5 +1,5 @@
 form {
-  background-color: #282c34;
+  /* background-color: #282c34; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -7,4 +7,21 @@ form {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.search-page{
+  background-image: '../../assets/new-mnemonic-background.jpg';
+}
+
+
+#phrase-to-remember{
+  background-color: black;
+}
+
+#by-artist{
+  background-color: black;
+}
+
+#order-matters-div{
+  background-color: black;
 }
