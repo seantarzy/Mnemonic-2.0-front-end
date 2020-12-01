@@ -63,7 +63,7 @@ export default class Search extends React.Component {
         <div id="full-body-div">
           {/* <img src = {Logo} id ="logo"/> */}
 
-       <text className = "white-text">{this.state.satisfied_artist_request ? null : "We Couldn't find results with that artist, but here's something..."}</text>
+       <text id = "artist-request-satisfied-or-not" className = "white-text">{this.state.satisfied_artist_request ? null : "We Couldn't find results with that artist, but here's something..."}</text>
           {
             this.props.globalState.search.song && this.props.globalState.search.song.title ?  
             <Result handleSubmit={this.handleSubmit} globalState={this.props.globalState}

@@ -53,6 +53,7 @@ if(this.props.artists){
         }
         style={this.styles}
       >
+        <div id="card-for-text">
           <div id = "phrase-to-remember">
         <label>
           Phrase to Remember:
@@ -102,6 +103,7 @@ if(this.props.artists){
         <br>
         </br>
         <input type="submit" value = "make my mnemonic!" />
+        </div>
       </form>
       </div>
     );

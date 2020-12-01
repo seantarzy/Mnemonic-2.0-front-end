@@ -101,7 +101,7 @@ nav{
 }
 .home{
   background-image: url('./assets/mnemonic-background-new.jpg');
-  background-size: 900px 700px;
+  background-size: 800px 600px;
   background-color: #282c34;
 }
 .inline-playlist-card{
@@ -269,5 +269,9 @@ width: 13px;
 #logo{
   top: 100;
   left: 100;
+}
+
+#artist-request-satisfied-or-not{
+  background-color: black;
 }
 

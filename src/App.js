@@ -34,6 +34,13 @@ class App extends React.Component {
     })
       // this.setState({artists: r})
     )
+    .then(()=>{
+      this.setState({
+        artistOptions: [
+          { label: "ANY", value: "any" },
+          ...this.state.artistOptions],
+      });
+    })
   }
 
   renderLogin = () => {

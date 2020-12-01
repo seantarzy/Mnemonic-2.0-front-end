@@ -9,12 +9,7 @@ form {
   color: white;
 }
 
-.search-page{
-  background-image: '../../assets/new-mnemonic-background.jpg';
-}
-
-
-#phrase-to-remember{
+/* #phrase-to-remember{
   background-color: black;
 }
 
@@ -24,4 +19,9 @@ form {
 
 #order-matters-div{
   background-color: black;
+}  */
+
+#card-for-text{
+  padding: 20px;
+  background-color: #282c34;
 }
