@@ -62,7 +62,7 @@ export default class Result extends React.Component {
         wordIndex = 0
         })
         // debugger
-        document.getElementById('matching-phrase-text').innerHTML = boldMatch.join(' ')
+        document.getElementById('matching-phrase-text').innerHTML = " " + boldMatch.join(' ')
         // this.setState({matchingPhrase: boldMatch.join(' ')})
     }
   }

@@ -20,6 +20,7 @@ export default class EditNodes extends React.Component {
         .then(()=>{
             this.props.toggleEditNotes()
             window.location.reload(false);
+            window.location.replace("https://mnemonicmaker.netlify.app/");
         // this.props.setNewNote(this.state.currentNote)
         })
         .then(()=>{           
