@@ -91,6 +91,7 @@ export default class PlaylistsContainer extends React.Component {
         return (
 
             <div className = "white-text">
+                Note: the matching Initials are capitalized
                 <div className = "in-line-playlist" onClick = {this.toggleModal}>
                     <img src = {NewPlaylist} height = '100' width = '100'/>
                     <p>new playlist...</p>

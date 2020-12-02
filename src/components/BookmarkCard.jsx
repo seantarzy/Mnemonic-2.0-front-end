@@ -81,6 +81,11 @@ export default class BookmarkCard extends React.Component {
         }
     }
 
+     htmlDecode=(input)=> {
+  var doc = new DOMParser().parseFromString(input, "text/html");
+  return doc.documentElement.textContent;
+}
+
 
 //     boldTheInitials = ()=>{
 //     if(this.props.bookmark.matching_phrase){
@@ -143,7 +148,7 @@ export default class BookmarkCard extends React.Component {
             <Card.Body style = {this.styles.card_body}>
                 <Card.Text>{this.props.bookmark.full_title}</Card.Text>
                 
-                <Card.Text id = "matching-phrase-bookmark">matching phrase: {this.props.bookmark.matching_phrase}</Card.Text>
+                <Card.Text id = "matching-phrase-bookmark">matching phrase: {this.htmlDecode(this.props.bookmark.matching_phrase)}</Card.Text>
         <button onClick = {()=>this.setState({showInputPhrase: !this.state.showInputPhrase})}>{this.state.showInputPhrase ? <text>hide my phrase</text>: <text>show my phrase</text>}</button>
                 {this.state.showInputPhrase ?
                 <Card.Text>input phrase: {this.props.bookmark.input_phrase}</Card.Text>
