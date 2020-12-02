@@ -1,5 +1,5 @@
 
-const BACKEND = "http://127.0.0.1:3001/";
+const BACKEND = "https://lit-everglades-15783.herokuapp.com/";
 
 export const fetchMnemonic = (phrase, current_snippet_index, artist, order) => {
   if(!artist){

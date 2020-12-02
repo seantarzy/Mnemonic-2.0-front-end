@@ -91,7 +91,6 @@ export default class PlaylistsContainer extends React.Component {
         return (
 
             <div className = "white-text">
-                Note: the matching Initials are capitalized
                 <div className = "in-line-playlist" onClick = {this.toggleModal}>
                     <img src = {NewPlaylist} height = '100' width = '100'/>
                     <p>new playlist...</p>
@@ -133,15 +132,16 @@ export default class PlaylistsContainer extends React.Component {
                             
                             </div>
                     :
-                        <button onClick = {this.playlistShowMore}>more...</button>
-                    }
+                    <button onClick = {this.playlistShowMore}>more...</button>
+                }
                 
                     
+                Note: the matching Initials are capitalized
                     { this.state.featuredBookmarks ?
               this.state.featuredBookmarks.map((bookmark) => {
-                    return <BookmarkCard bookmark = {bookmark}
-                            handleBookmarkDelete = {this.handleBookmarkDelete}
-                            mountUser = {this.props.mountUser}
+                  return <BookmarkCard bookmark = {bookmark}
+                  handleBookmarkDelete = {this.handleBookmarkDelete}
+                  mountUser = {this.props.mountUser}
                             setFeatured = {this.setFeatured}
                             playlist = {this.state.featuredPlaylist}
                         
