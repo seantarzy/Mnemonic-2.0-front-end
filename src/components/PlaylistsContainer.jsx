@@ -135,7 +135,8 @@ export default class PlaylistsContainer extends React.Component {
                     <button onClick = {this.playlistShowMore}>more...</button>
                 }
                 
-                    
+                    <br>
+                    </br>
                 Note: the matching Initials are capitalized
                     { this.state.featuredBookmarks ?
               this.state.featuredBookmarks.map((bookmark) => {
