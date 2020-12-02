@@ -7,7 +7,7 @@ import CreatePlaylist from './CreatePlaylist'
 export default class AddToPlaylist extends React.Component{
 
      addToPlaylist = (playlist_id)=>{
-        saveBookmark(playlist_id, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase, this.props.globalState.search.song.youtube_id)
+        saveBookmark(playlist_id, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.boldedPhrase, this.props.globalState.search.song.youtube_id)
         .then(() => this.props.toggleModal())
         .then(()=>{
             if(localStorage.token){
@@ -22,6 +22,7 @@ export default class AddToPlaylist extends React.Component{
          NewPlaylist: false
      }
 render(){
+    
     const playlists = this.props.globalState.user.playlists.map(playlist=>{
      return (
          <div onClick = {()=>this.addToPlaylist(playlist.id)}>

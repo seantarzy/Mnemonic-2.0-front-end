@@ -203,8 +203,8 @@ html{
 }
 
 #order-matters-checkbox{
-height: 13px;
-width: 13px;
+height: 10px;
+width: 10px;
 /* border-radius: 200px; */
 }
 
@@ -251,13 +251,17 @@ width: 13px;
 }
 
 #round-order-matters-checkbox{
-  background-color: black;
-  size: 20;
+  display: inline;
+  /* background-color: black; */
+  size: 10;
   position: relative;
 }
 
 #order-matters-text{
-  margin: 5px;
+  font-size: 10;
+  margin-left: 5;
+  /* text: 20; */
+  /* margin: 1px; */
 }
 
 .filter-select{
@@ -273,5 +277,9 @@ width: 13px;
 
 #artist-request-satisfied-or-not{
   background-color: black;
+}
+
+#create-playlist{
+  background-color: #282c34
 }
 

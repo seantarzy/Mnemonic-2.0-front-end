@@ -97,6 +97,7 @@ if(this.props.artists){
           onChange={this.handleCheckToggle}/>
           <label for="checkbox"></label>
           </div>
+          <span>  </span>
           <text className = "order-matters" id = "order-matters-text">Order Matters</text>
         <br />
         </div>

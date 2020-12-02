@@ -7,14 +7,20 @@ import CreatePlaylistForm from './AddToPlaylist'
 import AddToPlaylist from './AddToPlaylist'
 export default class Result extends React.Component {
 
+
   state = {
     saved: false,
     showModal: false,
     scrolled: false,
-    showModal: false
+    showModal: false,
+    matchingPhrase: null
   }
 
+  nonInitials = ["(", "'", '"', "[", "/", "`", "+", "*", "&", "^", "%", "$", "#", "@", "-", "="]
+
+
   componentDidMount = ()=>{
+    // this.boldTheInitials()
     this.appendLyrics()
     let result = document.getElementsByClassName("results")[0]
     result.scrollIntoView({behavior: 'smooth'})
@@ -24,15 +30,40 @@ export default class Result extends React.Component {
 
   componentDidUpdate = () => {
     this.appendLyrics()
+    // this.boldTheInitials()
     let result = document.getElementsByClassName("results")[0]
     result.scrollIntoView({behavior: 'smooth'})
     
   }
 
-  toggleSave = ()=>{
-    this.setState({saved: !this.state.saved})
-    if(!this.state.saved){
-      saveBookmark(this.props.globalState.user.playlists[0].id, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase, this.props.globalState.search.song.youtube_id)
+  boldTheInitials = ()=>{
+    if(this.props.globalState){
+      console.log("hit")
+        let boldMatch = []
+        let inputPhrase = this.props.globalState.search.input_phrase.split(' ')
+        let matching_phrase = this.props.globalState.search.matching_phrase.split(' ')
+        let inputPhraseLetterIndex = 0
+        let wordIndex = 0
+        matching_phrase.forEach((word)=>{
+          let matchInitial = word[wordIndex]
+          let restOfWordStart = 1
+          while(this.nonInitials.includes(matchInitial)){
+            wordIndex++
+            restOfWordStart++
+            matchInitial = word[wordIndex]
+          }
+          if(word && matchInitial && inputPhrase[inputPhraseLetterIndex] && inputPhrase[inputPhraseLetterIndex][0] && matchInitial.toLowerCase() == inputPhrase[inputPhraseLetterIndex][0].toLowerCase()){
+            boldMatch.push((matchInitial.toUpperCase().bold() + word.slice(restOfWordStart, word.length)) + " ")
+            inputPhraseLetterIndex++
+          }
+          else{
+            boldMatch.push(word + " ")
+          }
+        wordIndex = 0
+        })
+        // debugger
+        document.getElementById('matching-phrase-text').innerHTML = boldMatch.join(' ')
+        // this.setState({matchingPhrase: boldMatch.join(' ')})
     }
   }
 
@@ -60,12 +91,14 @@ export default class Result extends React.Component {
       );
       lyrics.innerHTML += "<br/>";
     });
+    this.boldTheInitials()
+
     songDiv.append(lyrics);
   };
 
   toggleModal = ()=>{
+    this.setState({boldedPhrase: document.getElementById('matching-phrase-text').innerHTML})
     this.setState({showModal: !this.state.showModal})
-    console.log(this.state.showModal)
   }
 
   render(){
@@ -90,7 +123,8 @@ export default class Result extends React.Component {
         scrollable = {true}
         >
           
-          <AddToPlaylist 
+          <AddToPlaylist
+          boldedPhrase = {this.state.boldedPhrase}
           mountUser = {this.props.mountUser}
             globalState = {this.props.globalState}
             toggleModal={this.toggleModal}
@@ -100,6 +134,7 @@ export default class Result extends React.Component {
             </button>
         </Modal>
         {localStorage.token ? 
+      
             <p onClick={this.toggleModal}
               id = "add-song"
               className="query-summary">
@@ -118,7 +153,7 @@ export default class Result extends React.Component {
             {"  " + this.props.globalState.search.input_phrase}
             <br />
             Matching Phrase:
-            {" " + this.props.globalState.search.matching_phrase}
+           <text id = "matching-phrase-text">{" " + this.props.globalState.search.matching_phrase}</text> 
           </div>
           <button
             id="next-page-button"

@@ -43,7 +43,7 @@ export default class CreatePlaylistForm extends React.Component{
     render(){
         return (
             <>
-            <form onSubmit = {(e)=>this.handleSubmit(e)}>
+            <form onSubmit = {(e)=>this.handleSubmit(e)} id = "create-playlist">
                 <h1>New Playlist</h1>
               <label >title:</label>
               <input type="text" autoComplete="off" name="title" value={this.state.title} onChange={this.handleChange}/>

@@ -60,7 +60,6 @@ export const getBookmark = (bookmark_id)=>{
 }
 
 export const saveBookmark = (playlist_id, song_id, input_phrase, matching_phrase, youtube_id)=>{
-  
   let bookmark_params = {
     playlist_id: playlist_id,
     song_id: song_id,
