@@ -41,8 +41,9 @@ export default class PlaylistsContainer extends React.Component {
 
     setFeatured = (e, playlist)=>{
         // e.preventDefault()
+
         console.log("playlist: ", playlist)
-        this.setState({ featuredPlaylist: playlist, featuredBookmarks: playlist.bookmarks})
+        this.setState({ featuredPlaylist: playlist, featuredBookmarks: playlist.bookmarks, showMore: false})
     }
 
     setFeaturedToNull = (e)=>{
@@ -127,7 +128,7 @@ export default class PlaylistsContainer extends React.Component {
                                 <p>title: {this.state.featuredPlaylist.title}</p>
                                 <p>description: {this.state.featuredPlaylist.description}</p>
                                 <p>bookmarks: {this.state.featuredPlaylist.bookmarks.length}</p>
-                            <button onClick = {this.playlistShowMore}>hide</button>
+                            <button onClick = {this.playlistShowMore}>hide details</button>
                             </>}
                             
                             </div>
@@ -137,7 +138,7 @@ export default class PlaylistsContainer extends React.Component {
                 
                     <br>
                     </br>
-                {/* Note: the matching Initials are capitalized */}
+                Note: the matching initials in the song are Capitalized
                     { this.state.featuredBookmarks ?
               this.state.featuredBookmarks.map((bookmark) => {
                   return <BookmarkCard bookmark = {bookmark}

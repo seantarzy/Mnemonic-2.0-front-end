@@ -14,7 +14,7 @@ render(){
 
 return (
 <div className = "no-results" id = "no-results-div">
-    <p className = "white-text"> Sorry, there were no results matching your input. Please Search again</p>
+    <p className = "white-text" id = "no-results-text">  Sorry, there were no results matching your input. Please Search again</p>
     <img src = {NoResultsImg} class = "error-image"/>
 </div>
 )

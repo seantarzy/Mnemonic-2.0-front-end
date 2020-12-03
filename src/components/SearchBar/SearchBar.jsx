@@ -95,10 +95,10 @@ if(this.props.artists){
           type="checkbox"
           checked={this.state.order}
           onChange={this.handleCheckToggle}/>
-          <label for="checkbox"></label>
+          <label htmlFor="checkbox"></label>
           </div>
           <span>  </span>
-          <text className = "order-matters" id = "order-matters-text">Order Matters</text>
+          <text className = "order-matters">Order Matters</text>
         <br />
         </div>
         <br>

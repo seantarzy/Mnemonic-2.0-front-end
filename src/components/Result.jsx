@@ -13,11 +13,24 @@ export default class Result extends React.Component {
     showModal: false,
     scrolled: false,
     showModal: false,
-    matchingPhrase: null
+    matchingPhrase: null, 
+    perfectMatch: false
   }
 
   nonInitials = ["(", "'", '"', "[", "/", "`", "+", "*", "&", "^", "%", "$", "#", "@", "-", "="]
 
+  numHash = {
+    "0": "zero",
+     "1": "one",
+     "2": "two",
+     "3": "three",
+     "4": "four",
+     "5":"five",
+     "6":"six",
+     "7":"seven",
+     "8":"eight",
+     "9":"nine"
+   }
 
   componentDidMount = ()=>{
     // this.boldTheInitials()
@@ -29,6 +42,7 @@ export default class Result extends React.Component {
   }
 
   componentDidUpdate = () => {
+    
     this.appendLyrics()
     // this.boldTheInitials()
     let result = document.getElementsByClassName("results")[0]
@@ -41,26 +55,60 @@ export default class Result extends React.Component {
       console.log("hit")
         let boldMatch = []
         let inputPhrase = this.props.globalState.search.input_phrase.split(' ')
-        let matching_phrase = this.props.globalState.search.matching_phrase.split(' ')
-        let inputPhraseLetterIndex = 0
+        let matchingPhrase = this.props.globalState.search.matching_phrase.split(' ')
         let wordIndex = 0
-        matching_phrase.forEach((word)=>{
+        if(inputPhrase.length == matchingPhrase.length){
+          matchingPhrase.forEach((word)=>{ 
+            //if the matching phrase and hte input phrase are the same length, its a perfect match so we can bold every one of the matching phrase's initials
+            let matchInitial = word[wordIndex]
+            let restOfWordStart = 1
+            while(this.nonInitials.includes(matchInitial)){
+            wordIndex++
+            restOfWordStart++
+            matchInitial = word[wordIndex]
+          }
+          boldMatch.push((matchInitial.toUpperCase().bold() + word.slice(restOfWordStart, word.length)) + " ")
+          })
+        }
+        else{
+        let inputPhraseIndex = 0
+        matchingPhrase.forEach((word)=>{
           let matchInitial = word[wordIndex]
           let restOfWordStart = 1
+          if(inputPhraseIndex >= inputPhrase.length){
+            boldMatch.push(word.toLowerCase() + " ")
+          }
+          if(!!word && !!matchInitial && !!inputPhrase[inputPhraseIndex]){
+            
+            let currentInputWord = inputPhrase[inputPhraseIndex]
+            
+            if(this.numHash[currentInputWord]){
+              currentInputWord = this.numHash[currentInputWord]
+              //converting the digit to a word number
+            }
+
           while(this.nonInitials.includes(matchInitial)){
             wordIndex++
             restOfWordStart++
             matchInitial = word[wordIndex]
           }
-          if(word && matchInitial && inputPhrase[inputPhraseLetterIndex] && inputPhrase[inputPhraseLetterIndex][0] && matchInitial.toLowerCase() == inputPhrase[inputPhraseLetterIndex][0].toLowerCase()){
+          if(currentInputWord[0] && matchInitial.toLowerCase() == currentInputWord[0].toLowerCase()){
             boldMatch.push((matchInitial.toUpperCase().bold() + word.slice(restOfWordStart, word.length)) + " ")
-            inputPhraseLetterIndex++
+            inputPhraseIndex++
           }
           else{
-            boldMatch.push(word + " ")
+            console.log("word", word)
+            boldMatch.push(word.toLowerCase() + " ")
           }
         wordIndex = 0
+        restOfWordStart = 1
+          }
+          if(!inputPhrase[inputPhraseIndex]){
+            inputPhraseIndex++
+          }
+          
         })
+      }
         // debugger
         document.getElementById('matching-phrase-text').innerHTML = " " + boldMatch.join(' ')
         // this.setState({matchingPhrase: boldMatch.join(' ')})
@@ -154,6 +202,7 @@ export default class Result extends React.Component {
             <br />
             Matching Phrase:
            <text id = "matching-phrase-text">{" " + this.props.globalState.search.matching_phrase}</text> 
+           {this.props.globalState.search.matching_phrase.split(' ').length === this.props.globalState.search.input_phrase.split(' ').length ? <p className = "perfect-match">perfect match!</p> : null}
           </div>
           <button
             id="next-page-button"

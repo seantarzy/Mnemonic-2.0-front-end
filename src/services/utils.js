@@ -1,14 +1,19 @@
 
-const BACKEND = "https://lit-everglades-15783.herokuapp.com/";
+const local = "http://localhost:3001/";
+
+const netlify = "https://lit-everglades-15783.herokuapp.com/"
+
+const BACKEND = local
 
 export const fetchMnemonic = (phrase, current_snippet_index, artist, order) => {
   if(!artist){
     artist = 'any'
   }
   return fetch(BACKEND + `query/${phrase}/${current_snippet_index}/artist/${artist}/order/${order}`)
-  .then(r => {
-    console.log(`fetchMnemonic fetch returned with status ${r.status}`)
-    return r.json()
+  .then(r => r.json())
+  .catch(error=>{
+    alert("no matching phrase")
+      window.location.replace("https://mnemonicmaker.netlify.app/");
   })
 }
 

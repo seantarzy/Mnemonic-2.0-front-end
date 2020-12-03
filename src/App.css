@@ -258,7 +258,7 @@ width: 10px;
 }
 
 #order-matters-text{
-  font-size: 10;
+  font-size: 40%;
   margin-left: 5;
   /* text: 20; */
   /* margin: 1px; */
@@ -283,3 +283,10 @@ width: 10px;
   background-color: #282c34
 }
 
+#no-results-text{
+  background-color: black;
+}
+
+.perfect-match{
+  color: lightpink
+}
