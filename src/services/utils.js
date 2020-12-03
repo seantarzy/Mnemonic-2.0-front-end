@@ -3,7 +3,7 @@ const local = "http://localhost:3001/";
 
 const netlify = "https://lit-everglades-15783.herokuapp.com/"
 
-const BACKEND = local
+const BACKEND = netlify
 
 export const fetchMnemonic = (phrase, current_snippet_index, artist, order) => {
   if(!artist){
