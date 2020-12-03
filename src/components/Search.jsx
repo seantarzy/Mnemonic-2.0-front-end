@@ -27,7 +27,7 @@ export default class Search extends React.Component {
   handleSubmit = (e, query, current_snippet_index = 0, artist, order_matters) => {
     this.setState({ query: query, currentArtist: artist });
     fetchMnemonic(query, current_snippet_index, artist, order_matters).then((r) => {
-      console.log(r)
+      console.log("response: ",r)
       if (r.error) {
         this.setState({ error: r.error });
         document.getElementById('error-div').scrollIntoView()

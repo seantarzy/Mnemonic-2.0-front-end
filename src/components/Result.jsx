@@ -74,25 +74,29 @@ export default class Result extends React.Component {
         let inputPhraseIndex = 0
         matchingPhrase.forEach((word)=>{
           let matchInitial = word[wordIndex]
+          //first let's assume the first charactar is a valid initial
           let restOfWordStart = 1
           if(inputPhraseIndex >= inputPhrase.length){
+            //if we reach the end of the input phrase, let's just push the remaining words of the lyric, without bolding them
             boldMatch.push(word.toLowerCase() + " ")
           }
           if(!!word && !!matchInitial && !!inputPhrase[inputPhraseIndex]){
-            
+            //if the word is valid, the initial is valid and the input phrase word is still good
             let currentInputWord = inputPhrase[inputPhraseIndex]
-            
+            //
             if(this.numHash[currentInputWord]){
               currentInputWord = this.numHash[currentInputWord]
               //converting the digit to a word number
             }
 
           while(this.nonInitials.includes(matchInitial)){
+            //if the first character of the word from the lyric is not a valid initial
             wordIndex++
             restOfWordStart++
             matchInitial = word[wordIndex]
           }
           if(currentInputWord[0] && matchInitial.toLowerCase() == currentInputWord[0].toLowerCase()){
+            
             boldMatch.push((matchInitial.toUpperCase().bold() + word.slice(restOfWordStart, word.length)) + " ")
             inputPhraseIndex++
           }
