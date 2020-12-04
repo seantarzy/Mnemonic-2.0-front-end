@@ -25,3 +25,7 @@ form {
   padding: 20px;
   background-color: #282c34;
 }
+
+#query-input{
+width: 160px;
+}

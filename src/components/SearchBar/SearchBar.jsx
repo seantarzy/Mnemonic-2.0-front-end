@@ -69,6 +69,7 @@ if(this.props.artists){
           <br>
           </br>
           <input
+          id = "query-input"
             type="text"
             name="query"
             value={this.state.query}
