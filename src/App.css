@@ -45,6 +45,9 @@ nav{
   overflow: hidden;
 }
 
+.highlight {
+  background-color: yellow;
+}
 /* Style the links inside the navigation bar */
 .topnav a {
   float: left;

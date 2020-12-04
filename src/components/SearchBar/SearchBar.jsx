@@ -114,7 +114,7 @@ if(this.props.artists){
         </div>
         <br>
         </br>
-        <input type="submit" value = "make my mnemonic!" />
+        <input id = "make-mnemonic-button" type="submit" value = "make my mnemonic!" />
         </div>
       </form>
       </div>
