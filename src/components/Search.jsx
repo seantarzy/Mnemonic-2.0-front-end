@@ -38,6 +38,9 @@ export default class Search extends React.Component {
     fetchMnemonic(query, current_snippet_index, artist, order_matters, fresh_search).then((r) => {
       console.log("response: ",r)
       if (r.error) {
+          if(!fresh_search){
+            this.setState({satisfied_artist_request: true})
+          }
         this.setState({ error: r.error });
         document.getElementById('error-div').scrollIntoView()
         this.props.handleSearch(r)
