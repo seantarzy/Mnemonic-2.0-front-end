@@ -265,7 +265,7 @@ width: 10px;
 }
 
 .filter-select{
-  text-size-adjust: 15;
+  padding: 10;
   width: 200px;
   color: black;
 }
@@ -289,4 +289,13 @@ width: 10px;
 
 .perfect-match{
   color: lightpink
+}
+
+#enter-a-valid-phrase{
+    top: -20px;
+    background-color: black;
+}
+
+.bookmark-card{
+  justify-content: left;
 }

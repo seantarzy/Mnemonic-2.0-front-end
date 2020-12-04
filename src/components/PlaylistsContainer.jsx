@@ -89,6 +89,11 @@ export default class PlaylistsContainer extends React.Component {
             }
         };
 
+        const bookmarkStyles = {
+            justifyContent: "left"
+        }
+        
+
         return (
 
             <div className = "white-text">
@@ -142,6 +147,7 @@ export default class PlaylistsContainer extends React.Component {
                     { this.state.featuredBookmarks ?
               this.state.featuredBookmarks.map((bookmark) => {
                   return <BookmarkCard bookmark = {bookmark}
+                  className = "bookmark-card"
                   handleBookmarkDelete = {this.handleBookmarkDelete}
                   mountUser = {this.props.mountUser}
                             setFeatured = {this.setFeatured}

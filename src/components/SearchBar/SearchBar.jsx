@@ -47,6 +47,7 @@ if(this.props.artists){
   }
 
   render() {
+    
     return (
       <div className = "search-page"> 
       <form
@@ -87,6 +88,7 @@ if(this.props.artists){
               className = "filter-select"
               options = {this.props.artistOptions}
               onChange = {this.handleSelect}
+              placeholder = "ANY"
               /> 
             :
                 null

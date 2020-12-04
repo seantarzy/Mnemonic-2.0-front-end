@@ -26,6 +26,13 @@ export default class Search extends React.Component {
   // };
   
   handleSubmit = (e, query, current_snippet_index = 0, artist, order_matters, fresh_search = true) => {
+    if(query == ""){
+      e.preventDefault()
+      document.getElementById('enter-a-valid-phrase').innerText = "enter a valid word or phrase"
+
+    }
+    else{
+      document.getElementById('enter-a-valid-phrase').innerText = ""
     console.log("submitting...")
     this.setState({ query: query, currentArtist: artist });
     fetchMnemonic(query, current_snippet_index, artist, order_matters, fresh_search).then((r) => {
@@ -46,6 +53,7 @@ export default class Search extends React.Component {
       }
     });
     e.preventDefault();
+  }
   };
 
   toggleSave = () => {
@@ -58,6 +66,7 @@ export default class Search extends React.Component {
       <div className="home">
         <div id= 'search-bar' className = "search-error-inline">
         <SearchBar artistOptions={this.props.artistOptions} handleSubmit={this.handleSubmit} />
+        <text id = "enter-a-valid-phrase" className = "white-text"></text>
         </div>
         <div id = "error-div">
         {this.state.error ? < NoResults/> : null}

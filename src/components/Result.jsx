@@ -170,6 +170,22 @@ export default class Result extends React.Component {
     };
       return (
         <div className="results">
+          <div id = "page buttons">
+           <button
+            id="previous-page-button"
+            className="query-summary"
+            onClick = {(e)=>this.props.handleSubmit(e, this.props.original_query, this.props.globalState.search.current_snippet_index-2, this.props.globalState.search.song.artist_id, this.props.globalState.search.order_matters, this.state.fresh_search)}
+            >
+           ⬅ Previous Result {" "}
+          </button>
+          <button
+            id="next-page-button"
+            className="query-summary"
+            onClick = {(e)=>this.props.handleSubmit(e, this.props.original_query, this.props.globalState.search.current_snippet_index, this.props.globalState.search.song.artist_id, this.props.globalState.search.order_matters, this.state.fresh_search)}
+            >
+            Next Result ⮕{" "}
+          </button>
+          </div>
         <Modal
         isOpen={this.state.showModal}
         style = {customStyles}
@@ -187,13 +203,7 @@ export default class Result extends React.Component {
               Close
             </button>
         </Modal>
-              <button
-            id="previous-page-button"
-            className="query-summary"
-            onClick = {(e)=>this.props.handleSubmit(e, this.props.original_query, this.props.globalState.search.current_snippet_index-2, this.props.globalState.search.song.artist_id, this.props.globalState.search.order_matters, this.state.fresh_search)}
-            >
-           ⬅ Previous Result {" "}
-          </button>
+             
         {localStorage.token ? 
       
             <p onClick={this.toggleModal}
@@ -215,15 +225,8 @@ export default class Result extends React.Component {
             <br />
             Matching Phrase:
            <text id = "matching-phrase-text">{" " + this.props.globalState.search.matching_phrase}</text> 
-           {this.props.globalState.search.matching_phrase.split(' ').length === this.props.globalState.search.input_phrase.split(' ').length ? <p className = "perfect-match">perfect match!</p> : null}
           </div>
-          <button
-            id="next-page-button"
-            className="query-summary"
-            onClick = {(e)=>this.props.handleSubmit(e, this.props.original_query, this.props.globalState.search.current_snippet_index, this.props.globalState.search.song.artist_id, this.props.globalState.search.order_matters, this.state.fresh_search)}
-            >
-            Next Result ⮕{" "}
-          </button>
+          
           <h2 id="title"></h2>
 
           <iframe
