@@ -138,7 +138,7 @@ export default class PlaylistsContainer extends React.Component {
                 
                     <br>
                     </br>
-                Note: the matching initials in the song are Capitalized
+                {/* Note: the matching initials in the song are Capitalized */}
                     { this.state.featuredBookmarks ?
               this.state.featuredBookmarks.map((bookmark) => {
                   return <BookmarkCard bookmark = {bookmark}

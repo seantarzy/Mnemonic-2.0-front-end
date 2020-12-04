@@ -13,7 +13,7 @@ export default class Home extends React.Component {
     query: "",
     artist: "",
     order: true,
-    artistOptions: null
+    artistOptions: null,
   };
 
   handleChange = (e) => {
@@ -21,7 +21,15 @@ export default class Home extends React.Component {
   };
 
   handleSelect = (e)=>{
+    if(e.value == "any"){
+      this.setState({specifiedArtist: false})
+    }
+    else{
+      this.setState({specifiedArtist: true})
+
+    }
 this.setState({artist: e.value})
+
   }
   handleCheckToggle = ()=>{
     this.setState({order: !this.state.order})

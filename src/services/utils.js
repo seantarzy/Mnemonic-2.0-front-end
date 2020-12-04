@@ -3,13 +3,13 @@ const local = "http://localhost:3001/";
 
 const netlify = "https://lit-everglades-15783.herokuapp.com/"
 
-const BACKEND = netlify
+const BACKEND = local
 
-export const fetchMnemonic = (phrase, current_snippet_index, artist, order) => {
+export const fetchMnemonic = (phrase, current_snippet_index, artist, order, fresh_search=true) => {
   if(!artist){
     artist = 'any'
   }
-  return fetch(BACKEND + `query/${phrase}/${current_snippet_index}/artist/${artist}/order/${order}`)
+  return fetch(BACKEND + `query/${phrase}/${current_snippet_index}/artist/${artist}/order/${order}/${fresh_search}`)
   .then(r => r.json())
   .catch(error=>{
     alert("no matching phrase")

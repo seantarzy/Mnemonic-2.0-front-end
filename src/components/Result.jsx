@@ -14,7 +14,9 @@ export default class Result extends React.Component {
     scrolled: false,
     showModal: false,
     matchingPhrase: null, 
-    perfectMatch: false
+    perfectMatch: false,
+    specifiedArtist: false,
+    fresh_search: false
   }
 
   nonInitials = ["(", "'", '"', "[", "/", "`", "+", "*", "&", "^", "%", "$", "#", "@", "-", "="]
@@ -96,7 +98,7 @@ export default class Result extends React.Component {
             matchInitial = word[wordIndex]
           }
           if(currentInputWord[0] && matchInitial.toLowerCase() == currentInputWord[0].toLowerCase()){
-            
+
             boldMatch.push((matchInitial.toUpperCase().bold() + word.slice(restOfWordStart, word.length)) + " ")
             inputPhraseIndex++
           }
@@ -185,6 +187,13 @@ export default class Result extends React.Component {
               Close
             </button>
         </Modal>
+              <button
+            id="previous-page-button"
+            className="query-summary"
+            onClick = {(e)=>this.props.handleSubmit(e, this.props.original_query, this.props.globalState.search.current_snippet_index-2, this.props.globalState.search.song.artist_id, this.props.globalState.search.order_matters, this.state.fresh_search)}
+            >
+           ⬅ Previous Result {" "}
+          </button>
         {localStorage.token ? 
       
             <p onClick={this.toggleModal}
@@ -211,7 +220,7 @@ export default class Result extends React.Component {
           <button
             id="next-page-button"
             className="query-summary"
-            onClick = {(e)=>this.props.handleSubmit(e, this.props.original_query, this.props.globalState.search.current_snippet_index, this.props.globalState.search.song.artist_id, this.props.globalState.search.order_matters)}
+            onClick = {(e)=>this.props.handleSubmit(e, this.props.original_query, this.props.globalState.search.current_snippet_index, this.props.globalState.search.song.artist_id, this.props.globalState.search.order_matters, this.state.fresh_search)}
             >
             Next Result ⮕{" "}
           </button>

@@ -16,17 +16,19 @@ export default class Search extends React.Component {
     error: null,
     saved: false,
     resultDisplayed: false,
-    satisfied_artist_request: true
+    satisfied_artist_request: true, 
+    fresh_search: true
   };
 
-  goToNextResult = (e, query, current_song_index = 0, artist, order_matters) => {
-    console.log("next result");
-    this.handleSubmit(e, query, current_song_index, artist, order_matters);
-  };
+  // goToNextResult = (e, query, current_song_index = 0, artist, order_matters) => {
+  //   console.log("next result");
+  //   this.handleSubmit(e, query, current_song_index, artist, order_matters);
+  // };
   
-  handleSubmit = (e, query, current_snippet_index = 0, artist, order_matters) => {
+  handleSubmit = (e, query, current_snippet_index = 0, artist, order_matters, fresh_search = true) => {
+    console.log("submitting...")
     this.setState({ query: query, currentArtist: artist });
-    fetchMnemonic(query, current_snippet_index, artist, order_matters).then((r) => {
+    fetchMnemonic(query, current_snippet_index, artist, order_matters, fresh_search).then((r) => {
       console.log("response: ",r)
       if (r.error) {
         this.setState({ error: r.error });
