@@ -30,3 +30,7 @@ form {
 width: 200px;
 font-size: larger;
 }
+
+#make-mnemonic-button{
+  font-size: 120%;
+}

@@ -5,8 +5,9 @@ import { saveBookmark } from '../services/utils'
 import Modal from 'react-modal';
 import CreatePlaylistForm from './AddToPlaylist'
 import AddToPlaylist from './AddToPlaylist'
-export default class Result extends React.Component {
+import Mark, {options} from 'mark.js'
 
+export default class Result extends React.Component {
 
   state = {
     saved: false,
@@ -117,6 +118,7 @@ export default class Result extends React.Component {
       }
         // debugger
         document.getElementById('matching-phrase-text').innerHTML = " " + boldMatch.join(' ')
+        
         // this.setState({matchingPhrase: boldMatch.join(' ')})
     }
   }
@@ -132,22 +134,48 @@ export default class Result extends React.Component {
     });
   }
   
+highlightMatch = ()=>{
+  console.log("highlighting")
+  // let instance = new Mark(document.getElementById('lyrics'))
+  //   if(instance){
+  //   let mark = instance.mark(this.props.globalState.search.matching_phrase, {acrossElements: true, separateWordSearch: false, accuracy: "exactly", ignorePunctuation: [" ", '"  ', '"', "'", ' "' ], wildcards: "withSpaces"})
+  //   console.log(mark, this.props.globalState.search.matching_phrase)
+  // }
+}
+
   appendLyrics = () => {
     let songDiv = document.getElementById("song");
     songDiv.innerText = "";
-  
+    
     let lyrics = document.createElement("p");
-  
+    lyrics.id = "lyrics"
     this.props.globalState.search.song.lyrics.split("\n").forEach((line) => {
+     let trimmedMatchingPhrase =  this.props.globalState.search.matching_phrase.trim()
+      line = line.trim()
+      if(line.split(',').length && trimmedMatchingPhrase.split(' ').length != line.split(' ').length){
+          let fragIndex = 0
+          let lineLength = line.split(',').length
+          line.split(',').forEach((fragment)=>{
+            fragIndex < lineLength - 1 ? fragment = `${fragment},` : fragment = fragment
+            lyrics.innerHTML += fragment.replace(
+            trimmedMatchingPhrase,
+            (match) => (`<mark clasName = "highlight">${match}</mark>`)
+            );
+            fragIndex++
+          })
+      }
+      else{
+        console.log("hit same length")
       lyrics.innerHTML += line.replace(
-        this.props.globalState.search.matching_phrase,
-        (match) => `<mark>${match}</mark>`
+        trimmedMatchingPhrase,
+        (match) => `<mark clasName = "highlight">${match}</mark>`
       );
+      }
       lyrics.innerHTML += "<br/>";
     });
     this.boldTheInitials()
-
-    songDiv.append(lyrics);
+    songDiv.append(lyrics)
+    this.highlightMatch()
   };
 
   toggleModal = ()=>{

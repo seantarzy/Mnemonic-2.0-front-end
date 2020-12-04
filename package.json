@@ -42,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "mark.js": "^8.11.1",
     "prettier": "2.1.2"
   }
 }
