@@ -5,7 +5,6 @@ import { saveBookmark } from '../services/utils'
 import Modal from 'react-modal';
 import CreatePlaylistForm from './AddToPlaylist'
 import AddToPlaylist from './AddToPlaylist'
-import Mark, {options} from 'mark.js'
 
 export default class Result extends React.Component {
 
