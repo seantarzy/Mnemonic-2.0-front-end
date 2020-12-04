@@ -299,3 +299,8 @@ width: 10px;
 .bookmark-card{
   justify-content: left;
 }
+
+#beatles-logout{
+  height: 80%;
+  width: 80%
+}

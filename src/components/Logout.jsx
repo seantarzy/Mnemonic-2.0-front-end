@@ -1,8 +1,9 @@
 import React from 'react'
-
+import Beatles from '../assets/beatles.jpg'
+import '../App.css'
 export default class Logout extends React.Component{
 
-    componentWillMount = ()=>{
+    componentDidMount = ()=>{
         localStorage.clear()
         this.props.handleLogout()
     }
@@ -10,7 +11,8 @@ export default class Logout extends React.Component{
     render(){
         return(
             <div>
-                <p>You have successfully logged out</p>
+                <p className = "white-text">You have successfully logged out</p>
+                <img src = {Beatles} id = "beatles-logout"/>
             </div>
         )
     }

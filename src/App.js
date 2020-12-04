@@ -48,7 +48,7 @@ class App extends React.Component {
   }
 
   renderLogout = () => {
-    return <Logout handleLogout={ this.props.unmountUser }/>
+    return <Logout handleLogout={ this.props.unmountUser } redirect={ () => this.props.history.push("/logout") }/>
   }
 
   renderSearch = () => {
@@ -70,23 +70,28 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <NavBar key = "nav-bar"/>
+        <NavBar key="nav-bar" />
         <Switch>
-          {localStorage.token ?
-            [
-              <Route path="/logout" render={ this.renderLogout } key = "logout" />,
-              <Route path="/playlists" render={ this.renderPlaylists } key = {"playlists"}/>
-            ]
-            :
-            [
-              <Route path="/login" render={this.renderLogin} key = "login"/>,
-              <Route path="/register" render={ this.renderRegister } key = "register" />,
-            ]
-          }
-  
-          <Route path="/about" component={ About } key = "about"/>
-          <Route path="/" exact render={ this.renderSearch } key = "home"/>
-          <Route render={ () => <p>Page not found</p> } key = "not found" />
+          {localStorage.token
+            ? [
+                <Route
+                  path="/playlists"
+                  render={this.renderPlaylists}
+                  key={"playlists"}
+                />,
+              ]
+            : [
+                <Route path="/login" render={this.renderLogin} key={"login"} />,
+                <Route
+                  path="/register"
+                  render={this.renderRegister}
+                  key={"register"}
+                />,
+              ]}
+          <Route path="/logout" render={this.renderLogout} key={"logout"} />,
+          <Route path="/about" component={About} key={"about"} />
+          <Route path="/" exact render={this.renderSearch} key={"home"} />
+          <Route render={() => <p>Page not found</p>} key={"not-found"} />
         </Switch>
       </div>
     );
