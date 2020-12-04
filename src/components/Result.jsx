@@ -167,21 +167,26 @@ export default class Result extends React.Component {
       'overflow-y'           :'auto',
       'max-height'           :'100vh'   
       }
-    };
+    }
+    let pageTurnback
+    this.props.globalState.search.current_snippet_index == 1 ? 
+    pageTurnback = 1
+    :
+    pageTurnback = 2
       return (
         <div className="results">
           <div id = "page buttons">
            <button
             id="previous-page-button"
             className="query-summary"
-            onClick = {(e)=>this.props.handleSubmit(e, this.props.original_query, this.props.globalState.search.current_snippet_index-2, this.props.globalState.search.song.artist_id, this.props.globalState.search.order_matters, this.state.fresh_search)}
+            onClick = {(e)=>this.props.handleSubmit(e, this.props.original_query, this.props.globalState.search.current_snippet_index-1, this.props.globalState.search.song.artist_id, this.props.globalState.search.order_matters, this.state.fresh_search)}
             >
            ⬅ Previous Result {" "}
           </button>
           <button
             id="next-page-button"
             className="query-summary"
-            onClick = {(e)=>this.props.handleSubmit(e, this.props.original_query, this.props.globalState.search.current_snippet_index, this.props.globalState.search.song.artist_id, this.props.globalState.search.order_matters, this.state.fresh_search)}
+            onClick = {(e)=>this.props.handleSubmit(e, this.props.original_query, this.props.globalState.search.current_snippet_index+1, this.props.globalState.search.song.artist_id, this.props.globalState.search.order_matters, this.state.fresh_search)}
             >
             Next Result ⮕{" "}
           </button>
