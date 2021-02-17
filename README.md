@@ -19,13 +19,9 @@ User can:
 - create and destroy bookmarks
 
 ### Getting Started
-Mnemonic Maker relies on [this](https://github.com/Jackmt9/mnemonic-maker-backend) backend. Be sure to follow the instructions in the [backend README](https://github.com/Jackmt9/mnemonic-maker-backend/blob/master/README.md) first.
+Mnemonic Maker relies on [this](https://github.com/seanytdawg/Mnemonic-2.0-backend) backend. Be sure to follow the instructions in the [backend README](https://github.com/Jackmt9/mnemonic-maker-backend/blob/master/README.md) first.
 
-To activate the frontend:
-1. Clone this repositiory.
-2. Install all dependencies by running ```$ npm install```.
-3. Start the development server by running ```$ npm start```.
-4. Open your browser and navigate to http://localhost:3000/.
+this baby is live: https://mnemonicmaker.netlify.app/
 
 ### Tools
 - React.js
