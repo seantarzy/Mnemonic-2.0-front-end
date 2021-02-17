@@ -35,7 +35,6 @@ export default class Result extends React.Component {
    }
 
   componentDidMount = ()=>{
-    // this.boldTheInitials()
     this.appendLyrics()
     let result = document.getElementsByClassName("results")[0]
     result.scrollIntoView({behavior: 'smooth'})
@@ -44,9 +43,7 @@ export default class Result extends React.Component {
   }
 
   componentDidUpdate = () => {
-    
     this.appendLyrics()
-    // this.boldTheInitials()
     let result = document.getElementsByClassName("results")[0]
     result.scrollIntoView({behavior: 'smooth'})
     
@@ -132,20 +129,10 @@ export default class Result extends React.Component {
       behavior: "smooth"
     });
   }
-  
-highlightMatch = ()=>{
-  console.log("highlighting")
-  // let instance = new Mark(document.getElementById('lyrics'))
-  //   if(instance){
-  //   let mark = instance.mark(this.props.globalState.search.matching_phrase, {acrossElements: true, separateWordSearch: false, accuracy: "exactly", ignorePunctuation: [" ", '"  ', '"', "'", ' "' ], wildcards: "withSpaces"})
-  //   console.log(mark, this.props.globalState.search.matching_phrase)
-  // }
-}
 
   appendLyrics = () => {
     let songDiv = document.getElementById("song");
     songDiv.innerText = "";
-    
     let lyrics = document.createElement("p");
     lyrics.id = "lyrics"
     this.props.globalState.search.song.lyrics.split("\n").forEach((line) => {
@@ -174,7 +161,6 @@ highlightMatch = ()=>{
     });
     this.boldTheInitials()
     songDiv.append(lyrics)
-    this.highlightMatch()
   };
 
   toggleModal = ()=>{
@@ -210,6 +196,10 @@ highlightMatch = ()=>{
             >
            ⬅ Previous Result {" "}
           </button>
+          <div className = "page-button-break">
+          <br>
+          </br>
+          </div>
           <button
             id="next-page-button"
             className="query-summary"

@@ -13,15 +13,13 @@ export default class EditNodes extends React.Component {
         console.log("mountin like a lion")
     }
 
-    handleSubmit = (e)=>{
-        // e.preventDefault()
-        // console.log("submitted")
+    handleSubmit = ()=>{
+
         editBookmark(this.state.currentNote, this.props.bookmark_id)
         .then(()=>{
             this.props.toggleEditNotes()
             window.location.reload(false);
-            // window.location.replace("https://mnemonicmaker.netlify.app/");
-        // this.props.setNewNote(this.state.currentNote)
+   
         })
         .then(()=>{           
         });
