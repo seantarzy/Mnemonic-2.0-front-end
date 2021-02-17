@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { editBookmark, stayLoggedIn, getBookmark} from '../services/utils'
+import { editBookmark} from '../services/utils'
 export default class EditNodes extends React.Component {
 
 

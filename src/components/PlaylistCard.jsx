@@ -11,9 +11,8 @@ export default class PlaylistCard extends React.Component {
             getSong(this.props.playlist.bookmarks[0].song_id)
             .then((song)=>{
               image.src = song.image
-        })
-        }
-    }
+        })}
+        };
 
     componentDidMount = ()=>{
        this.renderImage()

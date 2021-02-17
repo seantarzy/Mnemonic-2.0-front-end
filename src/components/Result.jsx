@@ -1,9 +1,7 @@
 import React from "react";
 
 import '../App.css'
-import { saveBookmark } from '../services/utils'
 import Modal from 'react-modal';
-import CreatePlaylistForm from './AddToPlaylist'
 import AddToPlaylist from './AddToPlaylist'
 
 export default class Result extends React.Component {
@@ -12,7 +10,6 @@ export default class Result extends React.Component {
     saved: false,
     showModal: false,
     scrolled: false,
-    showModal: false,
     matchingPhrase: null, 
     perfectMatch: false,
     specifiedArtist: false,
@@ -51,7 +48,6 @@ export default class Result extends React.Component {
 
   boldTheInitials = ()=>{
     if(this.props.globalState){
-      console.log("hit")
         let boldMatch = []
         let inputPhrase = this.props.globalState.search.input_phrase.split(' ')
         let matchingPhrase = this.props.globalState.search.matching_phrase.split(' ')
@@ -100,11 +96,9 @@ export default class Result extends React.Component {
             inputPhraseIndex++
           }
           else{
-            console.log("word", word)
             boldMatch.push(word.toLowerCase() + " ")
           }
         wordIndex = 0
-        restOfWordStart = 1
           }
           if(!inputPhrase[inputPhraseIndex]){
             inputPhraseIndex++
@@ -112,10 +106,8 @@ export default class Result extends React.Component {
           
         })
       }
-        // debugger
         document.getElementById('matching-phrase-text').innerHTML = " " + boldMatch.join(' ')
         
-        // this.setState({matchingPhrase: boldMatch.join(' ')})
     }
   }
 
@@ -142,7 +134,7 @@ export default class Result extends React.Component {
           let fragIndex = 0
           let lineLength = line.split(',').length
           line.split(',').forEach((fragment)=>{
-            fragIndex < lineLength - 1 ? fragment = `${fragment},` : fragment = fragment
+            if(fragIndex < lineLength - 1){fragment = `${fragment},`}
             lyrics.innerHTML += fragment.replace(
             trimmedMatchingPhrase,
             (match) => (`<mark clasName = "highlight">${match}</mark>`)
@@ -151,7 +143,6 @@ export default class Result extends React.Component {
           })
       }
       else{
-        console.log("hit same length")
       lyrics.innerHTML += line.replace(
         trimmedMatchingPhrase,
         (match) => `<mark clasName = "highlight">${match}</mark>`
@@ -181,11 +172,7 @@ export default class Result extends React.Component {
       'max-height'           :'100vh'   
       }
     }
-    let pageTurnback
-    this.props.globalState.search.current_snippet_index == 1 ? 
-    pageTurnback = 1
-    :
-    pageTurnback = 2
+   
       return (
         <div className="results">
           <div id = "page buttons">

@@ -3,7 +3,7 @@ import '../App.css'
 import PlaylistCard from './PlaylistCard'
 import Modal from 'react-modal';
 import BookmarkCard from './BookmarkCard'
-import {getPlaylist, getSong} from '../services/utils'
+import {getSong} from '../services/utils'
 import NewPlaylist from '../assets/NewPlaylistIcon.png'
 import CreatePlaylist from './CreatePlaylist'
 import EditPlaylist from './EditPlaylist.jsx';
@@ -27,7 +27,6 @@ export default class PlaylistsContainer extends React.Component {
         })
     }
     handleBookmark =(bookmark)=>{
-        console.log('im a bookmark: ', bookmark)
         getSong(bookmark.song_id)
         .then((song)=>{
             this.setState({song})
@@ -39,10 +38,7 @@ export default class PlaylistsContainer extends React.Component {
         this.setState({featuredBookmarks: survivingBookmarks})
     }
 
-    setFeatured = (e, playlist)=>{
-        // e.preventDefault()
-
-        console.log("playlist: ", playlist)
+    setFeatured = (playlist)=>{
         this.setState({ featuredPlaylist: playlist, featuredBookmarks: playlist.bookmarks, showMore: false})
     }
 
@@ -66,7 +62,6 @@ export default class PlaylistsContainer extends React.Component {
         }
 
         render(){
-            let bookmarkCards = null
             let playlists
             if(this.props.globalState.user.playlists){
                  playlists = this.props.globalState.user.playlists.map((playlist)=>{
@@ -88,12 +83,7 @@ export default class PlaylistsContainer extends React.Component {
                 transform             : 'translate(-50%, -50%)'
             }
         };
-
-        const bookmarkStyles = {
-            justifyContent: "left"
-        }
         
-
         return (
 
             <div className = "white-text">
@@ -158,11 +148,6 @@ export default class PlaylistsContainer extends React.Component {
             :
             null
         } 
-                {/* {this.state.featuredPlaylist.bookmarks.map((bookmark) => */}
-                    {/* <BookmarkCard bookmark = {bookmark} />) */}
-                    {/* bookmarkCards */}
-                    {/* : */}
-                    {/* null} */}
                 </div>
                  :
                  null}

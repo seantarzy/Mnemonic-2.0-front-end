@@ -1,7 +1,6 @@
 import React from 'react';
-import {createPlaylist, getPlaylist, saveBookmark, stayLoggedIn} from '../services/utils'
+import { saveBookmark, stayLoggedIn} from '../services/utils'
 import NewPlaylist from '../assets/NewPlaylistIcon.png'
-import MusicSymbol from '../assets/music-symbol.png'
 import PlaylistCard from './PlaylistCard'
 import CreatePlaylist from './CreatePlaylist'
 export default class AddToPlaylist extends React.Component{
