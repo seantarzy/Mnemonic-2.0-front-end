@@ -49,7 +49,7 @@ if(this.props.artists){
   render() {
     
     return (
-      <div className = "search-page"> 
+      <div className = "search-page">
       <form
         onSubmit={(e) =>
           this.props.handleSubmit(
@@ -58,10 +58,11 @@ if(this.props.artists){
             0,
             this.state.artist,
             this.state.order
-          )
-        }
-        style={this.styles}
-      >
+            )
+          }
+          style={this.styles}
+          >
+          {this.props.artistOptions ? 
         <div id="card-for-text">
           <div id = "phrase-to-remember">
         <label>
@@ -83,19 +84,15 @@ if(this.props.artists){
           By Specific Artist:
         </label>
           {/* <select name="artist" id="artist" onChange={this.handleChange}> */}
-            {
-              this.props.artistOptions ?
+            
               <Select
               className = "filter-select"
               options = {this.props.artistOptions}
               onChange = {this.handleSelect}
               placeholder = "ANY"
               /> 
-            :
-                null
-            }
+            
             </div>
-          {/* </select> */}
           <br>
           </br>
           <div id="round-order-matters-checkbox">
@@ -116,8 +113,17 @@ if(this.props.artists){
         </br>
         <input id = "make-mnemonic-button" type="submit" value = "make my mnemonic!" />
         </div>
+          : 
+                <div >
+                  <iframe  className = "beatles-gif" src="https://giphy.com/embed/DY2ujmJHaO9Vu" frameBorder="0" ></iframe>
+                  </div>
+  }
       </form>
+
+          
+
       </div>
+
     );
   }
 }

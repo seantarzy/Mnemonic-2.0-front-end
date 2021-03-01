@@ -21,6 +21,11 @@ form {
   background-color: black;
 }  */
 
+.beatles-gif{
+  height: 400px;
+  width: 400px
+}
+
 #card-for-text{
   padding: 20px;
   background-color: #282c34;
