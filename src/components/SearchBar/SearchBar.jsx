@@ -116,6 +116,7 @@ if(this.props.artists){
           : 
                 <div >
                   <iframe  className = "beatles-gif" src="https://giphy.com/embed/DY2ujmJHaO9Vu" frameBorder="0" ></iframe>
+                  <footer className = "loading">Loading...</footer>
                   </div>
   }
       </form>

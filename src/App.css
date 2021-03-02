@@ -114,6 +114,11 @@ nav{
   width: 20;
 }
 
+.loading{
+  size: 40px;
+  background-color: black;
+}
+
 .title-and-image-block{
   display: inline-block;
 }
