@@ -21,7 +21,7 @@ User can:
 ### Getting Started
 Mnemonic Maker relies on [this](https://github.com/seanytdawg/Mnemonic-2.0-backend) backend. Be sure to follow the instructions in the [backend README](https://github.com/Jackmt9/mnemonic-maker-backend/blob/master/README.md) first.
 
-this baby is live: https://mnemonicmaker.netlify.app/
+link to site: https://mnemonicmaker.netlify.app/ (currently not live)
 
 ### Tools
 - React.js
